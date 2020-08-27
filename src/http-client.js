@@ -190,8 +190,14 @@ const order = (privCall, payload = {}, url) => {
       ? { timeInForce: 'GTC', ...payload }
       : payload
 
+  if (payload.type === 'MARKET') {
+    if (!payload.quantity && !payload.quoteOrderQty) {
+      throw new Error(`Method ${name} requires quantity or quoteOrderQty parameter for MARKET type.`)
+    }
+  }
+
   return (
-    checkParams('order', newPayload, ['symbol', 'side', 'quantity']) &&
+    checkParams('order', newPayload, ['symbol', 'side']) &&
     privCall(url, { type: 'LIMIT', ...newPayload }, 'POST')
   )
 }

@@ -446,7 +446,7 @@ declare module 'binance-api-node' {
     icebergQty?: string
     newClientOrderId?: string
     price?: string
-    quantity: string
+    quantity?: string
     recvWindow?: number
     side: OrderSide
     stopPrice?: string
@@ -455,6 +455,7 @@ declare module 'binance-api-node' {
     useServerTime?: boolean
     type: OrderType
     newOrderRespType?: NewOrderRespType
+    quoteOrderQty?: string
   }
 
   export interface NewOcoOrder {
