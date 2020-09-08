@@ -1,6 +1,6 @@
 // tslint:disable:interface-name
 declare module 'binance-api-node' {
-  export default function(options?: {
+  export default function (options?: {
     apiKey: string
     apiSecret: string
     getTime?: () => number | Promise<number>
@@ -273,6 +273,8 @@ declare module 'binance-api-node' {
       useServerTime?: boolean
     }): Promise<QueryOrderResult>
     futuresPositionRisk(options?: { recvWindow: number }): Promise<PositionRiskResult[]>
+    futuresBalance(): Promise<BalanceResult[]>
+    futuresAccountInformation(): Promise<AccountInformationV2Result>
   }
 
   export interface HttpError extends Error {
@@ -864,6 +866,66 @@ declare module 'binance-api-node' {
     positionAmt: string
     symbol: string
     unRealizedProfit: string
+    positionSide: string
+  }
+
+  export interface BalanceResult {
+    accountAlias: string
+    asset: string
+    balance: string
+    crossWalletBalance: string
+    crossUnPnl: string
+    availableBalance: string
+    maxWithdrawAmount: string
+  }
+
+  export interface AccountInformationV2Result {
+    feeTier: number
+    canTrade: boolean
+    canDeposit: boolean
+    canWithdraw: boolean
+    updateTime: number
+    totalInitialMargin: string
+    totalMaintMargin: string
+    totalWalletBalance: string
+    totalUnrealizedProfit: string
+    totalMarginBalance: string
+    totalPositionInitialMargin: string
+    totalOpenOrderInitialMargin: string
+    totalCrossWalletBalance: string
+    totalCrossUnPnl: string
+    availableBalance: string
+    maxWithdrawAmount: string
+    assets: Assets[]
+    positions: Positions[]
+  }
+
+  export interface Assets {
+    asset: string
+    walletBalance: string
+    unrealizedProfit: string
+    marginBalance: string
+    maintMargin: string
+    initialMargin: string
+    positionInitialMargin: string
+    openOrderInitialMargin: string
+    crossWalletBalance: string
+    crossUnPnl: string
+    availableBalance: string
+    maxWithdrawAmount: string
+  }
+
+  export interface Positions {
+    symbol: string
+    initialMargin: string
+    maintMargin: string
+    unrealizedProfit: string
+    positionInitialMargin: string
+    openOrderInitialMargin: string
+    leverage: string
+    isolated: boolean
+    entryPrice: string
+    maxNotional: string
     positionSide: string
   }
 }
