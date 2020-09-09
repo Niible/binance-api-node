@@ -353,10 +353,8 @@ declare module 'binance-api-node' {
     ONE_MONTH = '1M',
   }
 
-  export enum MarginType {
-    ISOLATED = 'ISOLATED',
-    CROSSED = 'CROSSED',
-  }
+  export type MarginType =
+    'ISOLATED' | 'CROSSED'
 
   export type RateLimitType = 'REQUEST_WEIGHT' | 'ORDERS'
 
