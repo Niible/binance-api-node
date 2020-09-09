@@ -275,6 +275,19 @@ declare module 'binance-api-node' {
     futuresPositionRisk(options?: { recvWindow: number }): Promise<PositionRiskResult[]>
     futuresBalance(): Promise<BalanceResult[]>
     futuresAccountInformation(): Promise<AccountInformationV2Result>
+    futuresChangeLeverage(options: {
+      symbol: string,
+      leverage: number,
+      recvWindow?: number,
+      timestamp?: number,
+    }): Promise<ChangeLeverageResult>
+    futuresChangeMarginType(options: {
+      symbol: string,
+      marginType: MarginType,
+      recvWindow?: number,
+      timestamp?: number,
+    }): Promise<ChangeMarginType>
+
   }
 
   export interface HttpError extends Error {
@@ -339,6 +352,11 @@ declare module 'binance-api-node' {
     ONE_WEEK = '1w',
     ONE_MONTH = '1M',
   }
+
+  export enum MarginType {
+    ISOLATED = 'ISOLATED',
+    CROSSED = 'CROSSED',
+  } 
 
   export type RateLimitType = 'REQUEST_WEIGHT' | 'ORDERS'
 
@@ -993,5 +1011,16 @@ declare module 'binance-api-node' {
     entryPrice: string
     maxNotional: string
     positionSide: string
+  }
+
+  export interface ChangeLeverageResult {
+    leverage: number
+    maxNotionalValue: string
+    symbol: string
+  }
+
+  export interface ChangeMarginType {
+    code: number
+    msg: string
   }
 }
