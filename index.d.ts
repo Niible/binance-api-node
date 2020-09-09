@@ -262,7 +262,7 @@ declare module 'binance-api-node' {
       endTime?: number
       limit?: number
     }): Promise<FundingRateResult[]>
-    futuresOrder(options: NewOrder): Promise<Order>
+    futuresOrder(options: NewFuturesOrder): Promise<FuturesOrder>
     futuresCancelOrder(options: {
       symbol: string
       orderId: number
@@ -460,6 +460,41 @@ declare module 'binance-api-node' {
     quoteOrderQty?: string
   }
 
+  export interface NewFuturesOrder {
+    symbol: string
+    side: OrderSide
+    positionSide?: PositionSide
+    type: FuturesType
+    quantity?: string
+    reduceOnly?: 'true' | 'false'
+    price: number
+    timeInForce?: TimeInForce
+    newClientOrderId?: string
+    stopPrice?: number
+    closePosition?: 'true' | 'false'
+    activationPrice?: number
+    callbackRate?: number
+    workingType?: WorkingType
+    newOrderRespType?: NewOrderRespType
+    recvWindow?: number
+    timestamp?: number
+  }
+
+  export enum FuturesType {
+    LIMIT = 'LIMIT',
+    MARKET = 'MARKET',
+    STOP = 'STOP',
+    TAKE_PROFIT = 'TAKE_PROFIT',
+    STOP_MARKET = 'STOP_MARKET',
+    TAKE_PROFIT_MARKET = 'TAKE_PROFIT_MARKET',
+    TRAILING_STOP_MARKET = 'TRAILING_STOP_MARKET',
+  }
+
+  export enum WorkingType {
+    MARK_PRICE = 'MARK_PRICE',
+    CONTRACT_PRICE = 'CONTRACT_PRICE'
+  }
+
   export interface NewOcoOrder {
     symbol: string
     listClientOrderId?: string
@@ -502,6 +537,37 @@ declare module 'binance-api-node' {
     transactTime: number
     type: OrderType
     fills?: OrderFill[]
+  }
+
+  export enum PositionSide {
+    BOTH = 'BOTH',
+    LOMG = 'LONG',
+    SHORT = 'SHORT',
+  }
+
+  export interface FuturesOrder {
+    clientOrderId: string,
+    cumQty: string,
+    cumQuote: string,
+    executedQty: string,
+    orderId: number,
+    avgPrice: string,
+    origQty: string,
+    price: string,
+    reduceOnly: boolean,
+    side: OrderSide,
+    positionSide: PositionSide,
+    status: OrderStatus,
+    stopPrice: string,        // please ignore when order type is TRAILING_STOP_MARKET
+    closePosition: boolean,   // if Close-All
+    symbol: string,
+    timeInForce: string,
+    type: string,
+    origType: string,
+    activatePrice: string,    // activation price, only return with TRAILING_STOP_MARKET order
+    priceRate: string,         // callback rate, only return with TRAILING_STOP_MARKET order
+    updateTime: number,
+    workingType: string,
   }
 
   export interface OcoOrder {
