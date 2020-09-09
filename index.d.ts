@@ -356,7 +356,7 @@ declare module 'binance-api-node' {
   export enum MarginType {
     ISOLATED = 'ISOLATED',
     CROSSED = 'CROSSED',
-  } 
+  }
 
   export type RateLimitType = 'REQUEST_WEIGHT' | 'ORDERS'
 
@@ -498,15 +498,24 @@ declare module 'binance-api-node' {
     timestamp?: number
   }
 
-  export enum FuturesType {
-    LIMIT = 'LIMIT',
-    MARKET = 'MARKET',
-    STOP = 'STOP',
-    TAKE_PROFIT = 'TAKE_PROFIT',
-    STOP_MARKET = 'STOP_MARKET',
-    TAKE_PROFIT_MARKET = 'TAKE_PROFIT_MARKET',
-    TRAILING_STOP_MARKET = 'TRAILING_STOP_MARKET',
-  }
+
+  export type OrderStatus =
+    | 'CANCELED'
+    | 'EXPIRED'
+    | 'FILLED'
+    | 'NEW'
+    | 'PARTIALLY_FILLED'
+    | 'PENDING_CANCEL'
+    | 'REJECTED'
+
+  export type FuturesType =
+    | 'LIMIT'
+    | 'MARKET'
+    | 'STOP'
+    | 'TAKE_PROFIT'
+    | 'STOP_MARKET'
+    | 'TAKE_PROFIT_MARKET'
+    | 'TRAILING_STOP_MARKET'
 
   export enum WorkingType {
     MARK_PRICE = 'MARK_PRICE',
