@@ -367,5 +367,6 @@ export default opts => {
     futuresChangeLeverage: payload => privCall('/fapi/v1/leverage', payload, 'POST'),
     futuresChangeMarginType: payload => privCall('/fapi/v1/marginType', payload, 'POST'),
     futuresGetOrder: payload => privCall('/fapi/v1/order', payload),
+    futuresUserTrades: payload => privCall('/fapi/v1/userTrades', payload),
   }
 }

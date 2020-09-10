@@ -246,6 +246,13 @@ declare module 'binance-api-node' {
       limit?: number
     }): Promise<AggregatedTrade[]>
     futuresTrades(options: { symbol: string; limit?: number }): Promise<FuturesTradeResult[]>
+    futuresUserTrades(options: {
+      symbol: string
+      startTime?: number
+      endTime?: number
+      fromId?: number
+      limit?: number
+    }): Promise<FuturesUserTradeResult[]>
     futuresDailyStats(options?: { symbol: string }): Promise<DailyStatsResult | DailyStatsResult[]>
     futuresPrices(): Promise<{ [index: string]: string }>
     futuresAllBookTickers(): Promise<{ [key: string]: Ticker }>
@@ -820,6 +827,23 @@ declare module 'binance-api-node' {
     quoteQty: string
     realizedPnl: string
     side: OrderSide
+    time: number
+    symbol: string
+  }
+
+  export interface FuturesUserTradeResult {
+    buyer: boolean
+    commission: string
+    commissionAsset: string
+    id: number
+    maker: boolean
+    orderId: number
+    price: string
+    qty: string
+    quoteQty: string
+    realizedPnl: string
+    side: OrderSide
+    positionSide: PositionSide
     time: number
     symbol: string
   }
