@@ -274,7 +274,7 @@ declare module 'binance-api-node' {
       symbol: string
       orderId: number
       useServerTime?: boolean
-    }): Promise<CancelOrderResult>
+    }): Promise<CancelFuturesOrderResult>
     futuresOpenOrders(options: {
       symbol?: string
       useServerTime?: boolean
@@ -617,14 +617,7 @@ declare module 'binance-api-node' {
 
   export type OrderSide = 'BUY' | 'SELL'
 
-  export type OrderStatus =
-    | 'CANCELED'
-    | 'EXPIRED'
-    | 'FILLED'
-    | 'NEW'
-    | 'PARTIALLY_FILLED'
-    | 'PENDING_CANCEL'
-    | 'REJECTED'
+
 
   export type OrderType =
     | 'LIMIT'
@@ -928,6 +921,30 @@ declare module 'binance-api-node' {
     timeImForce: TimeInForce
     type: string
     side: OrderSide
+  }
+
+  export interface CancelFuturesOrderResult {
+    clientOrderId: string,
+    cumQty: string,
+    cumQuote: string,
+    executedQty: string,
+    orderId: number,
+    origQty: string,
+    origType: FuturesType,
+    price: string,
+    reduceOnly: boolean,
+    side: OrderSide,
+    positionSide: PositionSide,
+    status: OrderStatus,
+    stopPrice: string,                // please ignore when order type is TRAILING_STOP_MARKET
+    closePosition: boolean,   // if Close-All
+    symbol: string,
+    timeInForce: TimeInForce,
+    type: FuturesType,
+    activatePrice: string,            // activation price, only return with TRAILING_STOP_MARKET order
+    priceRate: string,                 // callback rate, only return with TRAILING_STOP_MARKET order
+    updateTime: number,
+    workingType: WorkingType
   }
 
   export interface AvgPriceResult {
