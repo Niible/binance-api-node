@@ -368,5 +368,6 @@ export default opts => {
     futuresChangeMarginType: payload => privCall('/fapi/v1/marginType', payload, 'POST'),
     futuresGetOrder: payload => privCall('/fapi/v1/order', payload),
     futuresUserTrades: payload => privCall('/fapi/v1/userTrades', payload),
+    futuresChangePositionMode: payload => privCall('/fapi/v1/positionSide/dual', payload, 'POST'),
   }
 }

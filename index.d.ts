@@ -301,6 +301,11 @@ declare module 'binance-api-node' {
       recvWindow?: number,
       timestamp?: number,
     }): Promise<QueryFuturesOrderResult>
+    futuresChangePositionMode(options: {
+      dualSidePosition: string,
+      recvWindow?: number,
+      timestamp?: number,
+    }): Promise<ChangeMarginType>
 
   }
 
