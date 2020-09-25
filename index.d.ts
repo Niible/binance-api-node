@@ -502,7 +502,7 @@ declare module 'binance-api-node' {
     type: FuturesType
     quantity?: string
     reduceOnly?: 'true' | 'false'
-    price: number
+    price?: number
     timeInForce?: TimeInForce
     newClientOrderId?: string
     stopPrice?: number
