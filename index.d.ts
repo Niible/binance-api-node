@@ -217,6 +217,9 @@ declare module 'binance-api-node' {
     depositAddress(options: { asset: string }): Promise<DepositAddress>
     withdraw(options: {
       asset: string
+      network?: string
+      transactionFeeFlag?: boolean
+      withdrawOrderId?: string
       address: string
       amount: number
       name?: string
