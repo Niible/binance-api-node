@@ -175,6 +175,7 @@ declare module 'binance-api-node' {
     avgPrice(options?: { symbol: string }): Promise<AvgPriceResult | AvgPriceResult[]>
     time(): Promise<number>
     trades(options: { symbol: string; limit?: number }): Promise<TradeResult[]>
+    capitalConfigs(): Promise<CapitalConfig[]>
     ws: WebSocket
     myTrades(options: {
       symbol: string
@@ -1115,5 +1116,41 @@ declare module 'binance-api-node' {
   export interface ChangeMarginType {
     code: number
     msg: string
+  }
+
+  export interface CapitalConfig {
+    coin: string,
+    depositAllEnable: boolean,
+    free: string,
+    freeze: string,
+    ipoable: string,
+    ipoing: string,
+    isLegalMoney: false,
+    locked: string,
+    name: string,
+    networkList: NetworkList[]
+    storage: string,
+    trading: boolean,
+    withdrawAllEnable: boolean,
+    withdrawing: string
+  }
+
+  export interface NetworkList {
+    addressRegex: string,
+    coin: string,
+    depositDesc?: string, // shown only when "depositEnable" is false.
+    depositEnable: boolean,
+    isDefault: boolean,
+    memoRegex: string,
+    minConfirm: number,  // min number for balance confirmation
+    name: string,
+    network: string,
+    resetAddressStatus: boolean,
+    specialTips: string,
+    unLockConfirm: number,  // confirmation number for balance unlcok 
+    withdrawDesc: string, // shown only when "withdrawEnable" is false.
+    withdrawEnable: boolean,
+    withdrawFee: string,
+    withdrawMin: string
   }
 }
